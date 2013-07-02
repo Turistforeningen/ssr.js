@@ -32,6 +32,18 @@ var places = ssrjs('Jotunheimen*', function(err, data) {
 });
 ```
 
+### Build
+
+```
+npm run-script build
+```
+
+### Test
+
+```
+npm run-script test
+```
+
 ### Copyright
 
 Copyright (c) 2013, Turistforeningen, Hans Kristian Flaatten
