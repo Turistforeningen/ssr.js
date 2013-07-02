@@ -3,6 +3,9 @@ ssr.js
 
 SSR.js is a NodeJS wrapper for the official place registry ([SSR](http://www.statkart.no/Kart/Kartverksted/Stedsnavnsok/)) from the Norwegian Mapping Authority – [Kartverket](http://kartverket.no/en/About-The-Norwegian-Mapping-Authority/) – whom bears nationwide responsibility for geographical information, operates the national property registry and undertakes all property registration in Norway.
 
+## Disclaimer
+The Kartverket name and logo are copyright of the Norwegian Mapping Authority. This application is not produced by or affiliated with Kartverket. 
+
 ## The SSR Service
 
 The data are suitable for use in the search for solutions name research, navigation on land and sea, searching medium of interactive maps, preparation of topographic maps and data for SSR-search in map solutions on the Internet.
