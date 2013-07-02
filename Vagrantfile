@@ -8,7 +8,8 @@ apt-get install -y python-software-properties python g++ make
 add-apt-repository ppa:chris-lea/node.js
 apt-get update
 apt-get install -y nodejs
-npm install -g proj4node xml2js mocha coffee-script
+cd /vagrant/
+npm install
 SCRIPT
 
 Vagrant.configure("2") do |config|
