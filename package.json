@@ -11,13 +11,13 @@
     ,"test": "./test"
   }
   ,"scripts": {
-    "build":        "coffee --bare --compile --output lib/ src/*.coffee",
-    "prepublish":   "coffee --bare --compile --output lib/ src/*.coffee",
-    "postpublish":  "rm -rf lib",
-    "test":         "./node_modules/.bin/mocha"
+    "build":        "coffee --bare --compile --output lib/ src/*.coffee"
+    ,"prepublish":   "coffee --bare --compile --output lib/ src/*.coffee"
+    ,"postpublish":  "rm -rf lib"
+    ,"test":         "./node_modules/.bin/mocha"
   }
   ,"dependencies": {
-    ,"xml2js": "~0.2"
+    "xml2js": "~0.2"
   }
   ,"devDependencies": {
     "coffee-script": "~1"
