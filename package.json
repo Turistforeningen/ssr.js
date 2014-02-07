@@ -14,7 +14,7 @@
     "build":        "coffee --bare --compile --output lib/ src/*.coffee"
     ,"prepublish":   "coffee --bare --compile --output lib/ src/*.coffee"
     ,"postpublish":  "rm -rf lib"
-    ,"test":         "./node_modules/.bin/mocha"
+    ,"test":          "mocha -b -c --check-leaks test/ssr_test.coffee -R progress --compilers coffee:coffee-script/register -w"
   }
   ,"dependencies": {
     "xml2js": "~0.2"
