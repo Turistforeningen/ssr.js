@@ -4,18 +4,18 @@ assert = require 'assert'
 ssr    = require './../lib/ssr'
 
 describe 'ssr.js', ->
-  
+
   it 'should convert XML to JSON', (done) ->
     ssr 'Bergen', (err, data) ->
       throw err if err
-      
+
       assert.equal typeof data.sokRes, 'object', 'property sokRes should be an object'
       assert.equal typeof data.sokRes.sokStatus, 'object', 'property sokRes.sokStatus should be an object'
       assert.equal typeof data.sokRes.sokStatus.ok, 'string', 'search status ok should be a string'
       assert.equal typeof data.sokRes.sokStatus.melding, 'string', 'search status message should be a string'
       assert.equal typeof data.sokRes.totaltAntallTreff, 'string', 'number of matches should be string'
       assert.equal typeof data.sokRes.stedsnavn, 'object', 'returned matches should be an object'
-      
+
       for sted in data.sokRes.stedsnavn
         assert.equal typeof sted.ssrId, 'string', 'ssr id should be a string'
         assert.equal typeof sted.navnetype, 'string', 'ssr name type should be a string'
@@ -30,7 +30,7 @@ describe 'ssr.js', ->
         assert.equal typeof sted.epsgKode, 'string', 'ssr EPSG code should be a string'
 
       done()
-      
+
   it 'should handle emty result set', (done) ->
     ssr '', (err, data) ->
       throw err if err
@@ -41,13 +41,13 @@ describe 'ssr.js', ->
       assert.equal data.sokRes.sokStatus.melding, '', 'search status message should be empty'
       assert.equal data.sokRes.totaltAntallTreff, '0', 'number of matches should be 0'
       assert.equal typeof data.sokRes.stedsnavn, 'undefined', 'data set should be undefined'
-      
+
       done()
-  
+
   it 'should fetch single ssr', (done) ->
     ssr 1148612, (err, data) ->
       throw err if err
-      
+
       assert.equal data.sokRes.totaltAntallTreff, '1', 'number of matches should be 1'
       assert.equal typeof data.sokRes.stedsnavn, 'object', 'data set should be an object'
 

@@ -20,10 +20,10 @@ fetchAndParse = (params, cb) ->
 
     parser.addListener 'end', (r) ->
       cb null, r
-  
+
     res.on 'data', (d) ->
       parser.parseString d
-  
+
   req.on 'error', (e) -> cb e
 
 #
