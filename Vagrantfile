@@ -3,13 +3,39 @@
 
 # Boostrap Script
 $script = <<SCRIPT
+
+# Update & Install
+echo 'Updating and installing ubuntu packages...'
 apt-get update
-apt-get install -y python-software-properties python g++ make
-add-apt-repository ppa:chris-lea/node.js
-apt-get update
-apt-get install -y nodejs
-cd /vagrant/
-npm install
+apt-get install -y build-essential git curl
+
+# NodeJS via NVM
+echo "Installing Node Version Manager..."
+export HOME=/home/vagrant
+curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+echo "source ~/.nvm/nvm.sh" >> /home/vagrant/.bashrc
+source /home/vagrant/.nvm/nvm.sh
+#nvm install 0.8
+nvm install 0.10
+#nvm install 0.11
+export HOME=/home/root
+
+# NPM package install
+echo "Installing NPM packages..."
+echo "PATH=$PATH:/vagrant/node_modules/.bin" >> /home/vagrant/.bashrc
+PATH=$PATH:/vagrant/node_modules/.bin
+cd /vagrant/ && rm -rf node_modules && npm install
+
+# Vagratnt Environment Varaibles
+echo "Setting environment variables..."
+echo "export NODE_ENV=development"                       >> /home/vagrant/.bashrc
+echo "export PORT_WWW=8080"                              >> /home/vagrant/.bashrc
+echo "export URL_WWW=http://localhost:8080/"             >> /home/vagrant/.bashrc
+echo "\ncd /vagrant"                                     >> /home/vagrant/.bashrc
+
+chown vagrant:vagrant /home/vagrant/.nvm
+chown vagrant:vagrant /home/vagrant/tmp
+
 SCRIPT
 
 Vagrant.configure("2") do |config|
@@ -27,8 +53,8 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network :forwarded_port, guest: 4000, host: 4000
-  
+  config.vm.network :forwarded_port, guest: 8080, host: 3008
+
   # The shell provisioner allows you to upload and execute a script as the root
   # user within the guest machine.
   config.vm.provision :shell, :inline => $script
@@ -51,9 +77,9 @@ Vagrant.configure("2") do |config|
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
-  
+
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "256"]
   end
-  
+
 end
